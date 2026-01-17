@@ -1,0 +1,15 @@
+Flask
+langchain-community
+langchain-huggingface
+langchain
+langchain-text-splitters
+faiss-cpu
+sentence-transformers
+google-generativeai
+python-dotenv
+pypdf
+python-docx
+docx2txt
+pandas
+openpyxl
+unstructured

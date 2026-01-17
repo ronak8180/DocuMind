@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuMind AI | SaaS RAG Workspace</title>
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Markdown: Marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="app-shell">
+        <!-- Top Navbar -->
+        <header class="navbar">
+            <a href="/" class="nav-brand" style="text-decoration: none; color: inherit;">
+                <div class="logo-box">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <span>DocuMind <span class="brand-sub">Platform</span></span>
+            </a>
+            <div class="nav-actions">
+                <div class="nav-item">
+
+
+                </div>
+                <div class="nav-divider"></div>
+                <div class="nav-user">
+
+                </div>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <!-- Sidebar: Document Management -->
+            <aside class="sidebar">
+                <div class="sidebar-top">
+                    <div class="section-title">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <span>DOCUMENTS</span>
+                    </div>
+
+                    <!-- Drag & Drop Upload Zone -->
+                    <div id="drop-zone" class="upload-zone">
+                        <form id="upload-form" enctype="multipart/form-data">
+                            <label for="file-input" class="drop-area">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span class="drop-text">Drag & drop files here</span>
+                                <span class="drop-sub">PDF, DOCX, TXT, XLSX</span>
+                                <input type="file" id="file-input" name="files" multiple accept=".pdf,.docx,.txt,.xlsx">
+                            </label>
+                            <button type="submit" id="upload-btn" class="upload-confirm-btn" disabled>
+                                <span>Upload & Index</span>
+                                <div class="btn-spinner"></div>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div id="upload-status" class="upload-status-bar"></div>
+                </div>
+
+                <div class="sidebar-center">
+                    <div class="section-title">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>CHAT HISTORY</span>
+                        <button id="new-chat-btn" class="icon-btn-sm" title="New Chat"><i
+                                class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div id="history-list" class="history-list-container">
+                        <div class="empty-state">No history yet</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-bottom">
+                    <div class="section-title">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>UPLOADED FILES</span>
+                    </div>
+                    <div id="file-list" class="file-list-container">
+                        <div class="empty-state">No files uploaded yet</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Workspace -->
+            <main class="chat-workspace">
+                <div class="chat-header">
+                    <div class="chat-title-info">
+                        <h2>Workspace Chat</h2>
+                        <span class="status-online"><span class="pulse"></span> System Active</span>
+                    </div>
+                    <div class="chat-actions">
+                        <button id="clear-chat" class="text-btn"><i class="fa-solid fa-trash-can"></i> Clear</button>
+                    </div>
+                </div>
+
+                <div id="chat-viewport" class="chat-viewport">
+                    <div id="chat-history" class="chat-history">
+                        <div class="msg-group system">
+                            <div class="msg-avatar system-av"><i class="fa-solid fa-robot"></i></div>
+                            <div class="msg-content">
+                                <p>Welcome to <strong>DocuMind Platform</strong>. Upload your project documents on the
+                                    left to start a context-aware conversation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Scroll to bottom button -->
+                    <button id="scroll-bottom-btn" class="scroll-btn"><i class="fa-solid fa-chevron-down"></i></button>
+                </div>
+
+                <div class="input-area">
+                    <div class="input-wrapper">
+                        <form id="chat-form">
+                            <div class="input-toolbar">
+                                <button type="button" id="chat-upload-plus" class="toolbar-btn"><i
+                                        class="fa-solid fa-plus"></i></button>
+                                <input type="file" id="chat-file-input" multiple hidden>
+                                <textarea id="user-input" placeholder="Ask anything about your documents..."
+                                    rows="1"></textarea>
+                                <button type="submit" id="send-btn" disabled><i
+                                        class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="input-note">AI-generated content can be inaccurate. Always verify sources.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
